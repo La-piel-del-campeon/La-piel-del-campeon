@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Poleras de Fútbol</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        primary: "#2E7D32", 
+                        secondary: "#212121" 
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                },
+            },
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .login-container {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://readdy.ai/api/search-image?query=professional%2520soccer%2520field%2520with%2520stadium%2520lights%2520at%2520dusk%2C%2520empty%2520green%2520grass%2520pitch%2520with%2520white%2520markings%2C%2520dramatic%2520lighting%2520creating%2520shadows%2C%2520stadium%2520seats%2520visible%2520in%2520background%2C%2520atmospheric%2520sports%2520venue%2C%2520professional%2520photography%2C%2520wide%2520angle&width=1920&height=1080&seq=hero1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .tab-btn.active {
+            border-color: #2E7D32;
+            color: #2E7D32;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Login Section -->
+    <div id="loginSection" class="login-container min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
+            <h1 class="text-2xl font-bold text-center mb-6">Admin Panel</h1>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
+                    <input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    Iniciar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="hidden min-h-screen bg-gray-100">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl font-bold">Panel de Administración</h1>
+                <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-button hover:bg-red-600 transition-colors">
+                    Cerrar Sesión
+                </button>
+            </div>
+
+            <!-- Tabs de navegación -->
+            <div class="mb-8 border-b border-gray-200">
+                <div class="flex space-x-8">
+                    <button class="tab-btn active px-4 py-2 border-b-2 border-primary text-primary font-medium" data-tab="products">
+                        Productos
+                    </button>
+                    <button class="tab-btn px-4 py-2 border-b-2 border-transparent text-gray-500 hover:text-primary font-medium" data-tab="faqs">
+                        Preguntas Frecuentes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sección de Productos -->
+            <div id="productsTab" class="tab-content">
+                <!-- Add New Product Form -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-bold mb-4">Agregar Nueva Polera</h2>
+                    <form id="addProductForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Equipo</label>
+                            <input type="text" id="teamName" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Precio</label>
+                            <input type="number" id="price" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Imagen</label>
+                            <div class="flex gap-2">
+                                <input type="file" id="imageFile" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                                <button type="button" onclick="document.getElementById('imageFile').click()" class="flex-1 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                                    <i class="ri-upload-line mr-2"></i>Subir Imagen
+                                </button>
+                                <input type="url" id="imageUrl" placeholder="O pegar URL de imagen" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div id="imagePreview" class="mt-2 hidden">
+                                <img src="" alt="Preview" class="h-32 w-32 object-cover rounded-lg">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                            <select id="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                                <option value="Selecciones Nacionales">Selecciones Nacionales</option>
+                                <option value="Clubes Europeos">Clubes Europeos</option>
+                                <option value="Equipos Latinoamericanos">Equipos Latinoamericanos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Temporada</label>
+                            <input type="text" id="season" class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="Ej: Temporada 2024/2025" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipo</label>
+                            <select id="type" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                                <option value="Primera">Primera</option>
+                                <option value="Selección">Selección</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                            <select id="status" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                                <option value="available">Disponible</option>
+                                <option value="unavailable">No Disponible</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                Agregar Polera
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de Productos -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold mb-4">Lista de Productos</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Producto</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsList" class="bg-white divide-y divide-gray-200">
+                                <!-- Los productos se cargarán aquí dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Testimonials Management -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold mb-6">Gestión de Testimonios</h2>
+                    
+                    <!-- Add New Testimonial Form -->
+                    <form id="testimonialForm" class="mb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Cliente</label>
+                                <input type="text" id="clientName" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary" required />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Iniciales</label>
+                                <input type="text" id="clientInitials" maxlength="2" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary" required />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Testimonio</label>
+                            <textarea id="testimonialText" rows="3" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Calificación (1-5)</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="rating" min="1" max="5" value="5" class="w-20 px-4 py-2 border border-gray-200 rounded-button focus:border-primary" required />
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="bg-primary text-white px-6 py-2 rounded-button font-semibold hover:bg-opacity-90 transition-colors">
+                            Agregar Testimonio
+                        </button>
+                    </form>
+
+                    <!-- Testimonials List -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="px-4 py-2 text-left">Cliente</th>
+                                    <th class="px-4 py-2 text-left">Testimonio</th>
+                                    <th class="px-4 py-2 text-left">Calificación</th>
+                                    <th class="px-4 py-2 text-left">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="testimonialsList">
+                                <!-- Testimonials will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de FAQs -->
+            <div id="faqsTab" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Agregar Nueva Pregunta</h2>
+                    <form id="addFaqForm" class="space-y-4">
+                        <div>
+                            <label for="faqQuestion" class="block text-sm font-medium text-gray-700 mb-1">Pregunta</label>
+                            <input type="text" id="faqQuestion" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label for="faqAnswer" class="block text-sm font-medium text-gray-700 mb-1">Respuesta</label>
+                            <textarea id="faqAnswer" rows="3" class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary" required></textarea>
+                        </div>
+                        <button type="submit" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 transition-colors">
+                            Agregar Pregunta
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold mb-4">Preguntas Frecuentes Existentes</h2>
+                    <div id="faqsList" class="space-y-4">
+                        <!-- Las FAQs se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poleras de Fútbol Originales</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#2E7D32", secondary: "#212121" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Remix Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Montserrat', sans-serif;
+      }
+      .hero-section {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://readdy.ai/api/search-image?query=professional%2520soccer%2520field%2520with%2520stadium%2520lights%2520at%2520dusk%2C%2520empty%2520green%2520grass%2520pitch%2520with%2520white%2520markings%2C%2520dramatic%2520lighting%2520creating%2520shadows%2C%2520stadium%2520seats%2520visible%2520in%2520background%2C%2520atmospheric%2520sports%2520venue%2C%2520professional%2520photography%2C%2520wide%2520angle&width=1920&height=1080&seq=hero1&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+      }
+      input:focus {
+      outline: none;
+      }
+      .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .product-card img {
+      transition: all 0.3s ease;
+      }
+      .product-card:hover img {
+      transform: scale(1.05);
+      }
+      .buy-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(46, 125, 50, 0.2);
+      }
+      .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      }
+      .mobile-menu.active {
+      transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a href="#" class="flex items-center">
+          <img src="images/logo.png" alt="Logo" class="h-8 w-auto">
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#inicio"
+            class="text-secondary hover:text-primary font-medium transition-colors"
+            >Inicio</a
+          >
+          <a
+            href="#catalogo"
+            class="text-secondary hover:text-primary font-medium transition-colors"
+            >Catálogo</a
+          >
+          <a
+            href="#contacto"
+            class="text-secondary hover:text-primary font-medium transition-colors"
+            >Contacto</a
+          >
+          <a
+            href="admin.html"
+            class="text-secondary hover:text-primary font-medium transition-colors"
+            >Admin</a
+          >
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <div class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-search-line text-gray-400"></i>
+              </div>
+            </div>
+            <input
+              type="text"
+              placeholder="Buscar poleras..."
+              class="pl-10 pr-4 py-2 border border-gray-200 rounded-button text-sm focus:border-primary"
+            />
+          </div>
+          <div
+            class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200 transition-colors"
+          >
+            <i class="ri-shopping-cart-line text-secondary"></i>
+          </div>
+        </div>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button
+            id="mobile-menu-button"
+            class="w-10 h-10 flex items-center justify-center"
+          >
+            <i class="ri-menu-line text-xl text-secondary"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="mobile-menu fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 pt-20 px-4"
+    >
+      <button
+        id="close-menu"
+        class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center"
+      >
+        <i class="ri-close-line text-xl text-secondary"></i>
+      </button>
+      <div class="flex flex-col space-y-6">
+        <a
+          href="#inicio"
+          class="text-secondary hover:text-primary font-medium transition-colors"
+          >Inicio</a
+        >
+        <a
+          href="#catalogo"
+          class="text-secondary hover:text-primary font-medium transition-colors"
+          >Catálogo</a
+        >
+        <a
+          href="#contacto"
+          class="text-secondary hover:text-primary font-medium transition-colors"
+          >Contacto</a
+        >
+        <a
+          href="admin.html"
+          class="text-secondary hover:text-primary font-medium transition-colors"
+          >Admin</a
+        >
+        <div class="relative mt-4">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <div class="w-5 h-5 flex items-center justify-center">
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+          <input
+            type="text"
+            placeholder="Buscar poleras..."
+            class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-button text-sm focus:border-primary"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <section
+      id="inicio"
+      class="hero-section min-h-screen flex items-center pt-16"
+    >
+      <div class="container mx-auto px-4 w-full">
+        <div class="max-w-2xl text-white">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">
+            LA PIEL DEL CAMPEÓN</h1>
+          <p class="text-xl mb-8">
+            Viste con el orgullo de tu equipo. Calidad garantizada y envíos a
+            todo el país.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#catalogo"
+              class="bg-primary text-white px-8 py-3 rounded-button font-semibold shadow-lg hover:bg-opacity-90 transition-all whitespace-nowrap !rounded-button"
+              >Ver Catálogo</a
+            >
+            <a
+              href="#contacto"
+              class="bg-white text-primary px-8 py-3 rounded-button font-semibold shadow-lg hover:bg-opacity-90 transition-all whitespace-nowrap !rounded-button"
+              >Contáctanos</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Featured Categories -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Categorías Destacadas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=collection%2520of%2520international%2520soccer%2520jerseys%2520hanging%2520on%2520display%2C%2520showing%2520various%2520national%2520team%2520colors%2520and%2520designs%2C%2520clean%2520retail%2520environment%2C%2520professional%2520lighting%2C%2520organized%2520display%2C%2520high-quality%2520fabric%2520visible&width=600&height=400&seq=cat1&orientation=landscape"
+                alt="Selecciones Nacionales"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Selecciones Nacionales</h3>
+              <p class="text-gray-600 mb-4">
+                Poleras oficiales de las mejores selecciones del mundo.
+              </p>
+              <a href="#catalogo" onclick="filterCategory('Selecciones Nacionales')" class="text-primary font-medium flex items-center">
+                Ver colección
+                <div class="w-5 h-5 flex items-center justify-center ml-1">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=european%2520club%2520soccer%2520jerseys%2520displayed%2520on%2520mannequins%2C%2520showing%2520famous%2520team%2520colors%2520like%2520Barcelona%2C%2520Real%2520Madrid%2C%2520Manchester%2520United%2C%2520clean%2520retail%2520environment%2C%2520professional%2520lighting%2C%2520organized%2520display%2C%2520high-quality%2520fabric%2520visible&width=600&height=400&seq=cat2&orientation=landscape"
+                alt="Clubes Europeos"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Clubes Europeos</h3>
+              <p class="text-gray-600 mb-4">
+                Equipaciones de los mejores clubes de las ligas europeas.
+              </p>
+              <a href="#catalogo" onclick="filterCategory('Clubes Europeos')" class="text-primary font-medium flex items-center">
+                Ver colección
+                <div class="w-5 h-5 flex items-center justify-center ml-1">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=south%2520american%2520soccer%2520jerseys%2520displayed%2520on%2520wall%2C%2520showing%2520famous%2520team%2520colors%2520from%2520Brazil%2C%2520Argentina%2C%2520Chile%2520clubs%2C%2520clean%2520retail%2520environment%2C%2520professional%2520lighting%2C%2520organized%2520display%2C%2520high-quality%2520fabric%2520visible&width=600&height=400&seq=cat3&orientation=landscape"
+                alt="Equipos Latinoamericanos"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">
+                Equipos Latinoamericanos
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Las mejores camisetas de los clubes de Sudamérica.
+              </p>
+              <a href="#catalogo" onclick="filterCategory('Equipos Latinoamericanos')" class="text-primary font-medium flex items-center">
+                Ver colección
+                <div class="w-5 h-5 flex items-center justify-center ml-1">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Product Catalog -->
+    <section id="catalogo" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4">Nuestro Catálogo</h2>
+        <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+          Descubre nuestra colección de poleras oficiales de los mejores equipos
+          del mundo. Calidad garantizada y los mejores precios del mercado.
+        </p>
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            class="filter-btn bg-primary text-white px-6 py-2 rounded-full font-medium whitespace-nowrap !rounded-button"
+            data-category="all"
+          >
+            Todos
+          </button>
+          <button
+            class="filter-btn bg-white text-secondary px-6 py-2 rounded-full font-medium whitespace-nowrap !rounded-button"
+            data-category="Selecciones Nacionales"
+          >
+            Selecciones
+          </button>
+          <button
+            class="filter-btn bg-white text-secondary px-6 py-2 rounded-full font-medium whitespace-nowrap !rounded-button"
+            data-category="Clubes Europeos"
+          >
+            Clubes Europeos
+          </button>
+          <button
+            class="filter-btn bg-white text-secondary px-6 py-2 rounded-full font-medium whitespace-nowrap !rounded-button"
+            data-category="Equipos Latinoamericanos"
+          >
+            Equipos Latinoamericanos
+          </button>
+        </div>
+        <!-- Products Grid -->
+        <div
+          id="productsGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+        >
+          <!-- Products will be loaded here dynamically -->
+        </div>
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+          <button
+            class="bg-white border border-primary text-primary px-8 py-3 rounded-button font-semibold hover:bg-primary hover:text-white transition-colors whitespace-nowrap !rounded-button"
+          >
+            Cargar Más Productos
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">¿Por qué elegirnos?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-verified-badge-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">100% Originales</h3>
+            <p class="text-gray-600">
+              Todas nuestras poleras son productos oficiales con garantía de
+              autenticidad.
+            </p>
+          </div>
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-truck-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Envío Rápido</h3>
+            <p class="text-gray-600">
+              Entrega a todo el país en 24-48 horas hábiles después de la
+              confirmación del pago.
+            </p>
+          </div>
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-exchange-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Cambios y Devoluciones</h3>
+            <p class="text-gray-600">
+              Tienes 30 días para realizar cambios o devoluciones si no estás
+              satisfecho.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Lo que dicen nuestros clientes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="testimonialsGrid">
+          <!-- Testimonials will be loaded here -->
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter -->
+    <section class="py-16 bg-primary">
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-white mb-4">
+            Suscríbete a nuestro boletín
+          </h2>
+          <p class="text-white text-opacity-90 mb-8">
+            Recibe las últimas novedades, lanzamientos y ofertas exclusivas
+            directamente en tu correo.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Tu correo electrónico"
+              class="flex-grow px-4 py-3 rounded-button border-none focus:ring-2 focus:ring-white text-sm"
+            />
+            <button
+              class="bg-white text-primary px-6 py-3 rounded-button font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap !rounded-button"
+            >
+              Suscribirse
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contacto" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Contáctanos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
+            <p class="text-gray-600 mb-6">
+              ¿Tienes alguna pregunta o necesitas ayuda con tu pedido? No dudes
+              en contactarnos a través de cualquiera de estos medios:
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="ri-instagram-line text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Instagram</h4>
+                  <a
+                    href="https://www.instagram.com/la.piel.del.campeon/"
+                    target="_blank"
+                    class="text-primary"
+                    >@la.piel.del.campeon</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="ri-whatsapp-line text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">WhatsApp</h4>
+                  <a href="https://api.whatsapp.com/send/?phone=56957383729&text=Hola%2C+muy+buenos+dias.%2C+me+gustaria+contactar+con+usted.&type=phone_number&app_absent=0
+                  " class="text-primary"
+                    >+56 9 5738 3729</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="ri-mail-line text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Correo Electrónico</h4>
+                  <a href="mailto:contacto@tutienda.com" class="text-primary"
+                    >lunapatricio1216@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i class="ri-map-pin-line text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Dirección</h4>
+                  <p class="text-gray-600">
+                    Temuco, Araucania Chile
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8">
+              <h3 class="text-xl font-semibold mb-4">Horario de Atención</h3>
+              <p class="text-gray-600">Atencion las 24hrs del dia</p>
+              <p class="text-gray-600"></p>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Envíanos un Mensaje</h3>
+            <form>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Nombre</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Correo Electrónico</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <label
+                  for="subject"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Asunto</label
+                >
+                <input
+                  type="text"
+                  id="subject"
+                  class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Mensaje</label
+                >
+                <textarea
+                  id="message"
+                  rows="5"
+                  class="w-full px-4 py-2 border border-gray-200 rounded-button focus:border-primary"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="bg-primary text-white px-6 py-3 rounded-button font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap !rounded-button"
+              >
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Preguntas Frecuentes
+        </h2>
+        <div id="faqsContainer" class="max-w-3xl mx-auto space-y-6">
+          <!-- Las FAQs se cargarán dinámicamente aquí -->
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-12 pb-6">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-['Pacifico'] mb-4">
+              <img src="images/logo.png" alt="Logo" class="h-8 w-auto">
+            </h3>
+            <p class="text-gray-300 mb-4">
+              Tu tienda especializada en poleras de fútbol originales con la
+              mejor calidad y precios del mercado.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition-colors"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition-colors"
+              >
+                <i class="ri-facebook-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition-colors"
+              >
+                <i class="ri-whatsapp-line"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#inicio"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Inicio</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#catalogo"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Catálogo</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contacto"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Contacto</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Sobre Nosotros</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Términos y Condiciones</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Categorías</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Selecciones Nacionales</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Clubes Europeos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Equipos Latinoamericanos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Ediciones Especiales</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Poleras Retro</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Contacto</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-gray-300"
+                  >Av. Providencia 1234, Santiago</span
+                >
+              </li>
+              <li class="flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-gray-300">+56 9 1234 5678</span>
+              </li>
+              <li class="flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-gray-300">contacto@tutienda.com</span>
+              </li>
+            </ul>
+            <div class="mt-4">
+              <h4 class="text-lg font-semibold mb-2">Medios de Pago</h4>
+              <div class="flex space-x-3">
+                <div
+                  class="w-10 h-6 flex items-center justify-center bg-white rounded"
+                >
+                  <i class="ri-visa-fill text-blue-800"></i>
+                </div>
+                <div
+                  class="w-10 h-6 flex items-center justify-center bg-white rounded"
+                >
+                  <i class="ri-mastercard-fill text-red-500"></i>
+                </div>
+                <div
+                  class="w-10 h-6 flex items-center justify-center bg-white rounded"
+                >
+                  <i class="ri-paypal-fill text-blue-600"></i>
+                </div>
+                <div
+                  class="w-10 h-6 flex items-center justify-center bg-white rounded"
+                >
+                  <i class="ri-bank-card-fill text-gray-700"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm"
+        >
+          <p>&copy; 2025 Poleras de Fútbol. Todos los derechos reservados.</p>
+          <p class="mt-2">
+            Diseñado con <span class="text-red-500">♥</span> para los amantes
+            del fútbol
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+      // Función para filtrar por categoría
+      function filterCategory(category) {
+        // Actualizar el botón de filtro activo
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+          if (btn.dataset.category === category) {
+            btn.classList.remove('bg-white', 'text-secondary');
+            btn.classList.add('bg-primary', 'text-white');
+          } else {
+            btn.classList.remove('bg-primary', 'text-white');
+            btn.classList.add('bg-white', 'text-secondary');
+          }
+        });
+
+        // Cargar productos de la categoría seleccionada
+        loadProducts(category);
+
+        // Scroll suave hasta el catálogo
+        document.getElementById('catalogo').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+
+      // Función para cargar FAQs
+      function loadFaqs() {
+        const faqs = JSON.parse(localStorage.getItem('faqs')) || [];
+        const faqsContainer = document.getElementById('faqsContainer');
+        
+        if (faqs.length === 0) {
+          // Si no hay FAQs en localStorage, mostrar las predeterminadas
+          const defaultFaqs = [
+            {
+              question: "¿Las poleras son originales?",
+              answer: "Sí, todas nuestras poleras son 100% originales y cuentan con garantía de autenticidad. Trabajamos directamente con proveedores oficiales."
+            },
+            {
+              question: "¿Cuánto tiempo tarda el envío?",
+              answer: "Los envíos dentro de Santiago se realizan en 24-48 horas hábiles. Para regiones, el tiempo estimado es de 2-4 días hábiles dependiendo de la localidad."
+            },
+            {
+              question: "¿Puedo personalizar mi polera?",
+              answer: "Sí, ofrecemos servicio de personalización con nombres y números. Puedes solicitarlo al momento de realizar tu compra por un costo adicional de $10.000."
+            },
+            {
+              question: "¿Qué métodos de pago aceptan?",
+              answer: "Aceptamos transferencias bancarias, depósitos, tarjetas de crédito/débito a través de WebPay, y efectivo en caso de retiro en tienda."
+            },
+            {
+              question: "¿Cómo puedo saber qué talla elegir?",
+              answer: "En cada producto encontrarás una guía de tallas. Si tienes dudas, puedes contactarnos por Instagram o WhatsApp y te ayudaremos a elegir la talla correcta."
+            }
+          ];
+          
+          // Guardar las FAQs predeterminadas en localStorage
+          localStorage.setItem('faqs', JSON.stringify(defaultFaqs));
+          
+          // Mostrar las FAQs predeterminadas
+          faqsContainer.innerHTML = defaultFaqs.map(faq => `
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-lg font-semibold mb-2">${faq.question}</h3>
+              <p class="text-gray-600">${faq.answer}</p>
+            </div>
+          `).join('');
+        } else {
+          // Mostrar las FAQs desde localStorage
+          faqsContainer.innerHTML = faqs.map(faq => `
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-lg font-semibold mb-2">${faq.question}</h3>
+              <p class="text-gray-600">${faq.answer}</p>
+            </div>
+          `).join('');
+        }
+      }
+
+      // Cargar FAQs cuando el documento esté listo
+      document.addEventListener('DOMContentLoaded', loadFaqs);
+
+      // Load testimonials
+      function loadTestimonials() {
+        const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+        const testimonialsGrid = document.getElementById('testimonialsGrid');
+        
+        if (testimonials.length === 0) {
+          testimonialsGrid.innerHTML = `
+            <div class="col-span-full text-center text-gray-500">
+              No hay testimonios disponibles en este momento.
+            </div>
+          `;
+          return;
+        }
+        
+        testimonialsGrid.innerHTML = testimonials.map(testimonial => `
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
+                ${testimonial.initials}
+              </div>
+              <div class="ml-4">
+                <h3 class="font-semibold">${testimonial.name}</h3>
+                <div class="text-yellow-400">
+                  ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600">${testimonial.text}</p>
+          </div>
+        `).join('');
+      }
+
+      // Load testimonials when the page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        loadTestimonials();
+        // ... rest of your existing DOMContentLoaded code ...
+      });
+    </script>
+  </body>
+</html>
